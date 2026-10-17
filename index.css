@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: 16px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  max-width: 100vw;
+}
+
+/* Cegah auto-zoom iOS saat fokus ke input (font minimal 16px di layar kecil). */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  @apply bg-nx-bg text-nx-text font-sans antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(900px 500px at 85% -10%, rgba(47, 123, 255, 0.16), transparent 60%),
+    radial-gradient(700px 400px at -10% 10%, rgba(124, 92, 255, 0.12), transparent 60%);
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .glass {
+    @apply bg-nx-surface/80 backdrop-blur-xl border border-nx-line;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 min-h-[44px] text-sm font-semibold transition duration-200 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-nx-accent to-nx-violet text-white shadow-glow hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn bg-white/10 text-nx-text border border-white/10 hover:bg-white/20;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-nx-line bg-nx-card px-3 min-h-[36px] text-xs font-medium text-nx-muted transition hover:text-nx-text;
+  }
+  .chip-on {
+    @apply border-nx-accent bg-nx-accent/20 text-white;
+  }
+  .badge-demo {
+    @apply rounded-md bg-amber-400/90 px-1.5 py-0.5 text-[10px] font-bold tracking-wider text-black;
+  }
+  .input {
+    @apply w-full rounded-xl border border-nx-line bg-nx-card px-4 min-h-[44px] text-sm text-nx-text placeholder:text-nx-muted outline-none focus:border-nx-accent;
+  }
+}
